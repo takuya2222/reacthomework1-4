@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { InputTodo } from './components/InputTodo';
+import { OutputTodos } from './components/OutputTodos';
 
 export const App = () => {
   const [todos, setTodos] = useState([]);
@@ -16,11 +18,11 @@ export const App = () => {
       comment,
       status: 'incomplete',
     };
-    
-    setTodos([...todos, todo]);
-    setComment('');
+      
+      setTodos([...todos, todo]);
+      setComment('');
   };
-
+  
   return (
     <>
     <h1>ToDoリスト</h1>
@@ -49,27 +51,17 @@ export const App = () => {
           </tr>
         </thead>
 
-        <tbody>
-          {todos.map((todo) => {
-            return (
-              <tr key={todo.id}>
-                <td>{todo.id}</td>
-                <td>{todo.comment}</td>
-                <td>
-                  <button>作業中</button>
-                </td>
-                <td><button>削除</button></td>
-              </tr>
-            );
-          })}
-        </tbody>
+        <OutputTodos
+         todos={todos}
+        />
+
       </table>
 
-    <div>
-      <h2>新規タスクの追加</h2> 
-      <input value={comment} onChange={onChangeTodo}/>
-      <button onClick={addTodo}>追加</button>
-    </div>
+      <InputTodo 
+        comment={comment}
+        onChangeTodo={onChangeTodo}
+        addTodo={addTodo}        
+        />
     </>
   );
 }
