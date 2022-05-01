@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const OutputTodos = (props) => {
+export const TaskList = (props) => {
   const { todos } = props;
   return (   
     <tbody>
@@ -10,7 +10,7 @@ export const OutputTodos = (props) => {
             <td>{todo.id}</td>
             <td>{todo.comment}</td>
             <td>
-              <button>作業中</button>
+              <button>{todo.status}</button>
             </td>
             <td><button>削除</button></td>
           </tr>

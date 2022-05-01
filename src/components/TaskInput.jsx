@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const InputTodo = (props) => {
+export const TaskInput = (props) => {
   const { comment, onChangeTodo, addTodo} = props;
   return (
     <div className='InputTodo'>

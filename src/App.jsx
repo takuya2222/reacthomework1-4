@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
-import { InputTodo } from './components/InputTodo';
-import { OutputTodos } from './components/OutputTodos';
+import React, { useState } from 'react';
+import { TaskInput } from './components/TaskInput';
+import { TaskList } from './components/ TaskList';
 
 export const App = () => {
   const [todos, setTodos] = useState([]);
@@ -16,7 +16,7 @@ export const App = () => {
     const todo = {
       id: todos.length + 1,
       comment,
-      status: 'incomplete',
+      status: '作業中',
     };
       
       setTodos([...todos, todo]);
@@ -51,13 +51,13 @@ export const App = () => {
           </tr>
         </thead>
 
-        <OutputTodos
+        < TaskList
          todos={todos}
         />
 
       </table>
 
-      <InputTodo 
+      <TaskInput 
         comment={comment}
         onChangeTodo={onChangeTodo}
         addTodo={addTodo}        
