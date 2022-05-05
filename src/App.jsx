@@ -6,8 +6,8 @@ export const App = () => {
   const [todos, setTodos] = useState([]);
   const [comment, setComment] = useState('');
   
-  const onChangeTodo = (e) => {
-    setComment(e.target.value);
+  const onChangeTodo = (event) => {
+    setComment(event.target.value);
   };
   
   const addTodo = () => {
@@ -27,7 +27,7 @@ export const App = () => {
     const newTodos = [...todos];
     newTodos.splice(index, 1)
     setTodos(newTodos);
-    setTodos(newTodos.map((e, i) => ({...e, id: i + 1})));
+    setTodos(newTodos.map((event, i) => ({...event, id: i + 1})));
   };
   
   return (
