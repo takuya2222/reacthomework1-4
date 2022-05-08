@@ -27,7 +27,7 @@ export const App = () => {
     const newTodos = [...todos];
     newTodos.splice(index, 1)
     setTodos(newTodos);
-    setTodos(newTodos.map((event, i) => ({...event, id: i + 1})));
+    setTodos(newTodos.map((todos, index) => ({...todos, id: index + 1})));
   };
   
   return (
