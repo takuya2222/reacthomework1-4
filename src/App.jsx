@@ -6,8 +6,8 @@ export const App = () => {
   const [todos, setTodos] = useState([]);
   const [comment, setComment] = useState('');
   
-  const onChangeTodo = (event) => {
-    setComment(event.target.value);
+  const onChangeTodo = (e) => {
+    setComment(e.target.value);
   };
   
   const addTodo = () => {
