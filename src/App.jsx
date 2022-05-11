@@ -29,6 +29,19 @@ export const App = () => {
     setTodos(newTodos);
     setTodos(newTodos.map((todos, index) => ({...todos, id: index + 1})));
   };
+
+  const toggle = (todoId) => {
+    setTodos(
+      todos.map((todo, i) =>
+        todoId === todo.id
+          ? {
+              ...todo,
+              status: todo.status === "incomplete" ? "completed" : "incomplete", 
+            }
+          : todo
+      )
+    );
+  };
   
   return (
     <>
@@ -61,6 +74,7 @@ export const App = () => {
         < TaskList
          todos={todos}
          onClickDelete={onClickDelete}
+         toggle={toggle}
         />
       </table>
 
@@ -68,7 +82,7 @@ export const App = () => {
         comment={comment}
         onChangeTodo={onChangeTodo}
         addTodo={addTodo}        
-        />
+      />
     </>
   );
 }

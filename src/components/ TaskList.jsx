@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const TaskList = (props) => {
-  const { todos, onClickDelete } = props;
+  const { todos, onClickDelete, toggle } = props;
   return (   
     <tbody>
       {todos.map((todo, index) => {
