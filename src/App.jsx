@@ -32,7 +32,7 @@ export const App = () => {
 
   const toggle = (todoId) => {
     setTodos(
-      todos.map((todo, i) =>
+      todos.map((todo, index) =>
         todoId === todo.id
           ? {
               ...todo,
