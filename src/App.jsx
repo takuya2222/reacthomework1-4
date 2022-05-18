@@ -30,7 +30,7 @@ export const App = () => {
     setTodos(newTodos.map((todos, index) => ({...todos, id: index + 1})));
   };
 
-  const taskInformationChange = (todoId) => {
+  const updateTaskStatus = (todoId) => {
     setTodos(
       todos.map((todo, index) =>
         todoId === todo.id
@@ -74,7 +74,7 @@ export const App = () => {
         < TaskList
          todos={todos}
          onClickDelete={onClickDelete}
-         taskInformationChange={taskInformationChange}
+         updateTaskStatus={updateTaskStatus}
         />
       </table>
 
