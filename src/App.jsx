@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
+
 import { TaskInput } from './components/TaskInput';
 import { TaskList } from './components/ TaskList';
 
 export const App = () => {
   const [todos, setTodos] = useState([]);
   const [comment, setComment] = useState('');
-  
-  const onChangeTodo = (e) => {
-    setComment(e.target.value);
-  };
+  const [radio, setRadio] = useState('all');
   
   const addTodo = () => {
     if (comment === '') return;
@@ -16,18 +14,18 @@ export const App = () => {
     const todo = {
       id: todos.length + 1,
       comment,
-      status: '作業中',
+      status: 'incomplete',
     };
       
-      setTodos([...todos, todo]);
-      setComment('');
+    setTodos([...todos, todo]);
+    setComment('');
   };
 
   const onClickDelete = (index) => {
     const newTodos = [...todos];
     newTodos.splice(index, 1)
     setTodos(newTodos);
-    setTodos(newTodos.map((todos, index) => ({...todos, id: index + 1})));
+    setTodos(newTodos.map((e, index) => ({...e, id: index + 1})));
   };
 
   const updateTaskStatus = (todoId) => {
@@ -42,6 +40,16 @@ export const App = () => {
       )
     );
   };
+
+  const switchTodos = () => {
+    if (radio === 'completed') {
+      return todos.filter((todo) => todo.status === 'completed');
+    }
+    if (radio === 'incomplete') {
+      return todos.filter((todo) => todo.status === 'incomplete');
+    }
+    return todos;
+  }
   
   return (
     <>
@@ -49,15 +57,30 @@ export const App = () => {
 
     <form>
       <label>
-        <input type='radio' id='all-Todo' name='Todo' defaultChecked onChange='radioChange()' />
+        <input 
+          type='radio' 
+          value='all'
+          onChange={(e) => setRadio(e.target.value)} 
+          checked={radio === 'all'} 
+        />
         すべて
       </label>
       <label>
-        <input type='radio' id='incomplete-Todo' name='Todo' />
+        <input 
+          type='radio' 
+          value='incomplete'
+          onChange={(e) => setRadio(e.target.value)} 
+          checked={radio === 'incomplete'}
+        />
         作業中
       </label>
       <label>
-        <input type='radio' id='complete-Todo' name='Todo' />
+        <input 
+          type='radio' 
+          value='complete'
+          onChange={(e) => setRadio(e.target.value)}
+          checked={radio === 'complete'}
+        />
         完了
       </label>
     </form>
@@ -71,8 +94,8 @@ export const App = () => {
           </tr>
         </thead>
 
-        < TaskList
-         todos={todos}
+        <TaskList
+         switchTodos={switchTodos}
          onClickDelete={onClickDelete}
          updateTaskStatus={updateTaskStatus}
         />
@@ -80,7 +103,7 @@ export const App = () => {
 
       <TaskInput 
         comment={comment}
-        onChangeTodo={onChangeTodo}
+        setComment={setComment}
         addTodo={addTodo}        
       />
     </>
